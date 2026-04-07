@@ -9,69 +9,55 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --ink: #4a4540;
-    --paper: #faf8f4;
-    --paper2: #f3f0ea;
-    --muted: #b0a898;
-  }
-
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: #faf8f4;
+    color: #4a4540;
     font-family: 'Courier Prime', monospace;
     min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
   }
 
   header {
     border-bottom: 2px solid #ddd8cc;
-    padding: 2rem 3rem 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .site-label {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: #b0a898;
     margin-bottom: 0.4rem;
   }
 
   h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.6rem, 7vw, 4.5rem);
-    line-height: 0.95;
+    font-size: clamp(2.8rem, 12vw, 5rem);
+    line-height: 0.92;
     color: #6e6560;
   }
 
   .byline {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.15em;
-    color: var(--muted);
-    margin-top: 0.5rem;
+    color: #b0a898;
+    margin-top: 0.6rem;
     text-transform: uppercase;
   }
 
-  main {
-    padding: 3rem;
-    max-width: 820px;
-  }
-
-  .section-rule {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-rule span {
-    font-size: 0.63rem;
+  .section-label {
+    font-size: 0.62rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--muted);
-    white-space: nowrap;
+    color: #b0a898;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 
-  .section-rule::after {
+  .section-label::after {
     content: '';
     flex: 1;
     height: 1px;
@@ -81,129 +67,87 @@
   .papers {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
   }
 
   .paper-card {
-    background: var(--paper2);
+    background: #f3f0ea;
     border: 1px solid #e2ddd4;
-    padding: 1.8rem 2rem;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    position: relative;
-  }
-
-  .paper-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 #d8d2c8;
-    z-index: 1;
+    padding: 1.5rem;
   }
 
   .paper-num {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    color: var(--muted);
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    color: #b0a898;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .paper-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.55rem;
-    letter-spacing: 0.03em;
-    line-height: 1.1;
-    margin-bottom: 0.6rem;
+    font-size: clamp(1.4rem, 5vw, 1.7rem);
     color: #6e6560;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
   }
 
   .paper-desc {
-    font-size: 0.81rem;
+    font-size: 0.8rem;
     line-height: 1.65;
     color: #8a8278;
-    margin-bottom: 1.2rem;
-    max-width: 540px;
+    margin-bottom: 1rem;
   }
 
   .paper-meta {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 0.66rem;
+    font-size: 0.62rem;
     letter-spacing: 0.1em;
-    color: var(--muted);
+    color: #b0a898;
     text-transform: uppercase;
-    margin-bottom: 1.4rem;
-    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
   }
 
-  .paper-meta span::before { content: '— '; }
-
   .btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.9rem 1rem;
     font-family: 'Courier Prime', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
     border: 1.5px solid #c8c2b8;
-    color: #8a8278;
+    color: #6e6560;
     background: transparent;
-    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     transition: background 0.12s, color 0.12s, border-color 0.12s;
   }
 
-  .btn:hover:not(:disabled) {
+  .btn:active, .btn:hover {
     background: #6e6560;
-    color: var(--paper);
+    color: #faf8f4;
     border-color: #6e6560;
   }
 
-  .btn:disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
-
   .btn svg {
-    width: 11px;
-    height: 11px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
-  }
-
-  .btn .spinner {
-    width: 11px;
-    height: 11px;
-    border: 1.5px solid currentColor;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    flex-shrink: 0;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .error-msg {
-    display: none;
-    font-size: 0.68rem;
-    color: #a07060;
-    margin-top: 0.6rem;
-    letter-spacing: 0.05em;
   }
 
   footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
     border-top: 1px solid #e2ddd4;
-    padding: 1.5rem 3rem;
-    font-size: 0.63rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1em;
-    color: var(--muted);
+    color: #b0a898;
     text-transform: uppercase;
-    margin-top: 4rem;
-  }
-
-  @media (max-width: 600px) {
-    header, main, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
-    .paper-card { padding: 1.2rem; }
-    h1 { font-size: 2.4rem; }
+    text-align: center;
   }
 </style>
 </head>
@@ -215,86 +159,37 @@
   <div class="byline">Matthew Celentano</div>
 </header>
 
-<main>
-  <div class="section-rule"><span>Published Works</span></div>
+<div class="section-label">Published Works</div>
 
-  <div class="papers">
+<div class="papers">
 
-    <div class="paper-card">
-      <div class="paper-num">No. 001 — Part 1</div>
-      <div class="paper-title">Nervous System of the Machine</div>
-      <p class="paper-desc">
-        A 354-page timeline tracing the intellectual and technological lineage of networked control systems, surveillance infrastructure, and cognitive science from 1945 to 2026. Pages 1–180.
-      </p>
-      <div class="paper-meta">
-        <span>180 pages</span>
-        <span>2026</span>
-      </div>
-      <button class="btn" onclick="downloadPDF('Important_Timeline_Part_1.pdf', 'Nervous_System_of_the_Machine_Part1.pdf', this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
-        Download Part 1
-      </button>
-      <div class="error-msg" id="err-1">Could not fetch file — try right-clicking and "Save link as" instead.</div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-num">No. 001 — Part 2</div>
-      <div class="paper-title">Nervous System of the Machine</div>
-      <p class="paper-desc">
-        Continuation of the timeline. Pages 181–354.
-      </p>
-      <div class="paper-meta">
-        <span>174 pages</span>
-        <span>2026</span>
-      </div>
-      <button class="btn" onclick="downloadPDF('Important_Timeline_Part_2.pdf', 'Nervous_System_of_the_Machine_Part2.pdf', this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
-        Download Part 2
-      </button>
-      <div class="error-msg" id="err-2">Could not fetch file — try right-clicking and "Save link as" instead.</div>
-    </div>
-
+  <div class="paper-card">
+    <div class="paper-num">No. 001 — Part 1</div>
+    <div class="paper-title">Nervous System<br>of the Machine</div>
+    <p class="paper-desc">A 354-page timeline tracing the intellectual and technological lineage of networked control systems, surveillance infrastructure, and cognitive science from 1945 to 2026. Pages 1–180.</p>
+    <div class="paper-meta">180 pages &nbsp;·&nbsp; 2026</div>
+    <a class="btn" href="Important_Timeline_Part_1.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
+      Open / Download Part 1
+    </a>
   </div>
-</main>
+
+  <div class="paper-card">
+    <div class="paper-num">No. 001 — Part 2</div>
+    <div class="paper-title">Nervous System<br>of the Machine</div>
+    <p class="paper-desc">Continuation of the timeline. Pages 181–354.</p>
+    <div class="paper-meta">174 pages &nbsp;·&nbsp; 2026</div>
+    <a class="btn" href="Important_Timeline_Part_2.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
+      Open / Download Part 2
+    </a>
+  </div>
+
+</div>
 
 <footer>
   All research by Matthew Celentano &nbsp;·&nbsp; Independent &nbsp;·&nbsp; All rights reserved
 </footer>
-
-<script>
-async function downloadPDF(filename, saveAs, btn) {
-  btn.disabled = true;
-  const originalHTML = btn.innerHTML;
-  btn.innerHTML = '<span class="spinner"></span> Downloading...';
-
-  // Find sibling error message
-  const errEl = btn.parentElement.querySelector('.error-msg');
-  if (errEl) errEl.style.display = 'none';
-
-  try {
-    const response = await fetch(filename);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = saveAs;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Done';
-    setTimeout(() => {
-      btn.innerHTML = originalHTML;
-      btn.disabled = false;
-    }, 3000);
-  } catch (e) {
-    btn.innerHTML = originalHTML;
-    btn.disabled = false;
-    if (errEl) errEl.style.display = 'block';
-  }
-}
-</script>
 
 </body>
 </html>
