@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research Papers — Matt Celentano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -40,7 +40,6 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(2.6rem, 7vw, 4.5rem);
     line-height: 0.95;
-    letter-spacing: 0.02em;
     color: #6e6560;
   }
 
@@ -154,16 +153,41 @@
     transition: background 0.12s, color 0.12s, border-color 0.12s;
   }
 
-  .btn:hover {
+  .btn:hover:not(:disabled) {
     background: #6e6560;
     color: var(--paper);
     border-color: #6e6560;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 
   .btn svg {
     width: 11px;
     height: 11px;
     flex-shrink: 0;
+  }
+
+  .btn .spinner {
+    width: 11px;
+    height: 11px;
+    border: 1.5px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-msg {
+    display: none;
+    font-size: 0.68rem;
+    color: #a07060;
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
   }
 
   footer {
@@ -206,10 +230,11 @@
         <span>180 pages</span>
         <span>2026</span>
       </div>
-      <a class="btn" href="Important_Timeline_Part_1.pdf" download>
+      <button class="btn" onclick="downloadPDF('Important_Timeline_Part_1.pdf', 'Nervous_System_of_the_Machine_Part1.pdf', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
         Download Part 1
-      </a>
+      </button>
+      <div class="error-msg" id="err-1">Could not fetch file — try right-clicking and "Save link as" instead.</div>
     </div>
 
     <div class="paper-card">
@@ -222,10 +247,11 @@
         <span>174 pages</span>
         <span>2026</span>
       </div>
-      <a class="btn" href="Important_Timeline_Part_2.pdf" download>
+      <button class="btn" onclick="downloadPDF('Important_Timeline_Part_2.pdf', 'Nervous_System_of_the_Machine_Part2.pdf', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 14l7 7 7-7"/><path d="M3 21h18"/></svg>
         Download Part 2
-      </a>
+      </button>
+      <div class="error-msg" id="err-2">Could not fetch file — try right-clicking and "Save link as" instead.</div>
     </div>
 
   </div>
@@ -234,6 +260,41 @@
 <footer>
   All research by Matthew Celentano &nbsp;·&nbsp; Independent &nbsp;·&nbsp; All rights reserved
 </footer>
+
+<script>
+async function downloadPDF(filename, saveAs, btn) {
+  btn.disabled = true;
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span> Downloading...';
+
+  // Find sibling error message
+  const errEl = btn.parentElement.querySelector('.error-msg');
+  if (errEl) errEl.style.display = 'none';
+
+  try {
+    const response = await fetch(filename);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = saveAs;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Done';
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }, 3000);
+  } catch (e) {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    if (errEl) errEl.style.display = 'block';
+  }
+}
+</script>
 
 </body>
 </html>
