@@ -99,48 +99,6 @@
                 <h1 class="title-font text-3xl tracking-[-2px] neon-text">VITALIANO</h1>
             </div>
             
-            <!-- Desktop nav -->
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium tracking-wider">
-                <a href="#abstract" class="hover:text-cyan-400 transition-colors nav-text">ABSTRACT</a>
-                <a href="#lineage" class="hover:text-cyan-400 transition-colors nav-text">LINEAGE</a>
-                <a href="#continuity" class="hover:text-cyan-400 transition-colors nav-text">CONTINUITY</a>
-                <a href="#quantum" class="hover:text-cyan-400 transition-colors nav-text">QUANTUM</a>
-                <a href="#anchors" class="hover:text-cyan-400 transition-colors nav-text">ANCHORS</a>
-                <a href="#roadmap" class="hover:text-cyan-400 transition-colors nav-text">ROADMAP</a>
-            </div>
-            
-            <div class="flex items-center gap-x-4">
-                <a href="Vitaliano_Complete_Final.pdf" target="_blank"
-                   class="hidden sm:flex items-center gap-x-2 px-6 py-3 rounded-3xl border border-cyan-400/70 hover:border-cyan-400 text-cyan-400 hover:text-white transition-all text-sm font-medium touch-target">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    <span class="hidden xs:inline">FULL PDF</span>
-                </a>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-4xl text-cyan-400 touch-target">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MOBILE MENU – Full-screen, buttery smooth -->
-    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 z-[100] pt-24 px-6">
-        <div class="flex flex-col gap-y-6 text-3xl font-light text-center">
-            <a href="#abstract" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Abstract</a>
-            <a href="#lineage" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">The Lineage</a>
-            <a href="#continuity" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Actor Continuity</a>
-            <a href="#quantum" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Quantum Claim</a>
-            <a href="#anchors" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Scientific Anchors</a>
-            <a href="#roadmap" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Experimental Roadmap</a>
-            
-            <div class="mt-12 px-4">
-                <a href="Vitaliano_Complete_Final.pdf" target="_blank" 
-                   class="block w-full py-7 bg-gradient-to-r from-cyan-400 to-blue-500 text-black rounded-3xl font-semibold text-2xl touch-target">
-                    Download Complete Reconstruction
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- HERO – Fully responsive & mobile-first -->
     <header class="hero-bg min-h-screen flex items-center hero-padding">
         <div class="max-w-screen-2xl mx-auto px-6 sm:px-10 relative z-10">
@@ -158,19 +116,6 @@
             
             <p class="mt-8 text-2xl sm:text-3xl text-gray-300 max-w-xl">Mooers • Command • VXM • ExQor • MetaQor</p>
             
-            <div class="mt-16 flex flex-col sm:flex-row items-center gap-4">
-                <a href="#abstract" 
-                   class="group w-full sm:w-auto px-12 py-7 bg-white text-black rounded-3xl font-semibold text-xl flex items-center justify-center gap-x-4 hover:scale-105 active:scale-95 transition-all touch-target">
-                    ENTER THE RECONSTRUCTION
-                    <i class="fa-solid fa-arrow-right group-active:rotate-45 transition-transform"></i>
-                </a>
-                
-                <a href="Vitaliano_Complete_Final.pdf" target="_blank"
-                   class="w-full sm:w-auto px-8 py-7 border border-cyan-400 rounded-3xl flex items-center justify-center gap-x-4 hover:bg-cyan-400 hover:text-black transition-all touch-target">
-                    <i class="fa-solid fa-file-pdf text-2xl"></i>
-                    <span class="text-lg">31-Page PDF</span>
-                </a>
-            </div>
             
             <div class="mt-20 text-xs flex flex-wrap items-center gap-x-8 gap-y-3 text-gray-400">
                 <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield-alt text-cyan-400"></i> FULLY EPISTEMICALLY LABELED</div>
@@ -179,23 +124,18 @@
             </div>
         </div>
         
-        <!-- Scroll indicator – always visible -->
+        <!-- Scroll indicator – only visible when not swiping -->
         <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-cyan-400 text-xs tracking-widest md:hidden">
             <div class="mb-2 animate-bounce">SWIPE TO EXPLORE</div>
             <i class="fa-solid fa-chevron-down text-2xl"></i>
         </div>
         
-        <div class="absolute bottom-12 left-1/2 hidden md:flex flex-col items-center text-cyan-400 text-xs tracking-widest">
-            <div class="mb-3 animate-bounce">SCROLL TO EXPLORE</div>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </header>
-
-    <!-- ABSTRACT -->
+    
+    <!-- THE RECONSTRUCTION -->
     <section id="abstract" class="max-w-screen-2xl mx-auto px-6 sm:px-10 py-16 md:py-28 border-b border-white/10">
         <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div class="md:col-span-4">
-                <h2 class="section-header text-5xl md:text-6xl title-font">ABSTRACT</h2>
+                <h2 class="section-header text-5xl md:text-6xl title-font">THE RECONSTRUCTION</h2>
             </div>
             <div class="md:col-span-8 prose prose-invert text-lg md:text-xl leading-relaxed">
                 This is the complete, integrated ceiling-level reconstruction of the Vitaliano lineage. 
@@ -203,27 +143,6 @@
                 External Scientific Anchors, and a full Testable Predictions &amp; Experimental Roadmap.
                 <br><br>
                 Every claim is labeled. The nanomedicine platform is advancing. The quantum claim is OPEN and now testable.
-            </div>
-        </div>
-    </section>
-
-    <!-- QUICK ACCESS CARDS – Mobile stack -->
-    <section class="max-w-screen-2xl mx-auto px-6 sm:px-10 py-16 md:py-20">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div onclick="document.getElementById('lineage').scrollIntoView({behavior:'smooth'})" 
-                 class="glass hover-lift rounded-3xl p-8 cursor-pointer touch-target">
-                <h3 class="text-3xl md:text-4xl font-semibold mb-4">The Lineage</h3>
-                <p class="text-gray-400">1945–2026 • Documented actor continuity across five institutions</p>
-            </div>
-            <div onclick="document.getElementById('quantum').scrollIntoView({behavior:'smooth'})" 
-                 class="glass hover-lift rounded-3xl p-8 cursor-pointer touch-target">
-                <h3 class="text-3xl md:text-4xl font-semibold mb-4">Quantum Claim</h3>
-                <p class="text-gray-400">MVQC is OPEN • Three concrete NMR experiments defined</p>
-            </div>
-            <div onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})" 
-                 class="glass hover-lift rounded-3xl p-8 cursor-pointer touch-target">
-                <h3 class="text-3xl md:text-4xl font-semibold mb-4">Experimental Roadmap</h3>
-                <p class="text-gray-400">T2 extension • Geometry dependence • iMQC enhancement</p>
             </div>
         </div>
     </section>
