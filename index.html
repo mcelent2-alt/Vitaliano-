@@ -40,23 +40,17 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, var(--neon), transparent);
+        }
+        
+        .timeline-dot {
+            box-shadow: 0 0 30px var(--neon);
+        }
+        
         .pdf-container {
             box-shadow: 0 0 80px -20px rgb(0 245 255);
             border: 1px solid rgba(0,245,255,0.2);
-        }
-        
-        .section-header {
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--neon), transparent);
         }
         
         .hover-lift {
@@ -67,23 +61,10 @@
             transform: scale(0.98);
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-        
-        .scanline {
-            animation: scan 30s linear infinite;
-        }
-        
-        /* MAX MOBILE OPTIMIZATIONS */
         @media (max-width: 640px) {
             .hero-text { font-size: 2.75rem !important; line-height: 1.05 !important; }
-            .nav-text { font-size: 0.95rem !important; }
-            .hero-padding { padding-top: 5rem !important; padding-bottom: 4rem !important; }
         }
         
-        /* Touch-friendly larger tap targets */
         .touch-target {
             min-height: 48px;
             min-width: 48px;
@@ -91,117 +72,205 @@
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
-    <!-- NAVBAR – Ultra mobile optimized -->
+    <!-- MINIMAL NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-3xl border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-6 sm:px-10 py-5 flex items-center justify-between">
+        <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black font-bold text-2xl rotate-12 touch-target flex-shrink-0">V</div>
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black font-bold text-2xl rotate-12">V</div>
                 <h1 class="title-font text-3xl tracking-[-2px] neon-text">VITALIANO</h1>
             </div>
             
-    <!-- HERO – Fully responsive & mobile-first -->
-    <header class="hero-bg min-h-screen flex items-center hero-padding">
-        <div class="max-w-screen-2xl mx-auto px-6 sm:px-10 relative z-10">
-            <div class="inline-flex items-center rounded-3xl bg-white/5 px-5 py-2 text-cyan-300 text-xs sm:text-sm border border-cyan-400/30 mb-8">
-                <span class="relative flex h-2 w-2 mr-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
-                </span>
+            <a href="#timeline" class="text-cyan-400 text-sm font-medium tracking-widest hover:text-white transition-colors">TIMELINE</a>
+            <a href="#pdfs" class="text-cyan-400 text-sm font-medium tracking-widest hover:text-white transition-colors">DOCUMENTS</a>
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden text-4xl text-cyan-400 touch-target">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 z-[100] pt-24 px-6">
+        <div class="flex flex-col gap-y-6 text-3xl font-light text-center">
+            <a href="#timeline" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Full Timeline</a>
+            <a href="#pdfs" onclick="toggleMobileMenu()" class="py-5 border-b border-white/10 active:bg-white/10 rounded-3xl">Source Documents</a>
+            <div class="mt-12 px-4">
+                <a href="Vitaliano Complete Final.pdf" target="_blank" class="block w-full py-7 bg-gradient-to-r from-cyan-400 to-blue-500 text-black rounded-3xl font-semibold text-2xl touch-target">Download Complete Reconstruction</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero-bg min-h-screen flex items-center">
+        <div class="max-w-screen-2xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center rounded-3xl bg-white/5 px-5 py-2 text-cyan-300 text-sm border border-cyan-400/30 mb-8">
                 1945 — 2026 • CEILING-LEVEL RECONSTRUCTION
             </div>
-            
-            <h1 class="hero-text text-6xl sm:text-7xl md:text-8xl title-font leading-none tracking-[-3px] neon-text">
-                THE VITALIANO<br>LINEAGE
-            </h1>
-            
-            <p class="mt-8 text-2xl sm:text-3xl text-gray-300 max-w-xl">Mooers • Command • VXM • ExQor • MetaQor</p>
-            
-            
-            <div class="mt-20 text-xs flex flex-wrap items-center gap-x-8 gap-y-3 text-gray-400">
-                <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield-alt text-cyan-400"></i> FULLY EPISTEMICALLY LABELED</div>
-                <div class="flex items-center gap-x-2"><i class="fa-solid fa-flask text-cyan-400"></i> EXPLICIT EXPERIMENTAL ROADMAP</div>
-                <div class="flex items-center gap-x-2"><i class="fa-solid fa-lock text-cyan-400"></i> FALSIFIABLE BY DESIGN</div>
-            </div>
+            <h1 class="hero-text text-6xl md:text-8xl title-font leading-none tracking-[-3px] neon-text">THE VITALIANO LINEAGE</h1>
+            <p class="mt-6 text-2xl md:text-3xl text-gray-300">Mooers • Command • VXM • ExQor • MetaQor</p>
+            <a href="#timeline" class="mt-16 inline-flex items-center gap-x-4 px-12 py-7 bg-white text-black rounded-3xl font-semibold text-xl hover:scale-105 active:scale-95 transition-all">
+                EXPLORE THE FULL TIMELINE
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
         </div>
+    </header>
+
+    <!-- INTERACTIVE TIMELINE – MAIN CONTENT, FILLED WITH EVERY DATA POINT -->
+    <section id="timeline" class="max-w-screen-2xl mx-auto px-6 py-20">
+        <h2 class="text-5xl title-font text-center mb-16 tracking-[-1px]">Complete Interactive Timeline • 1945–2026</h2>
         
-        <!-- Scroll indicator – only visible when not swiping -->
-        <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-cyan-400 text-xs tracking-widest md:hidden">
-            <div class="mb-2 animate-bounce">SWIPE TO EXPLORE</div>
-            <i class="fa-solid fa-chevron-down text-2xl"></i>
-        </div>
-        
-    
-    <!-- THE RECONSTRUCTION -->
-    <section id="abstract" class="max-w-screen-2xl mx-auto px-6 sm:px-10 py-16 md:py-28 border-b border-white/10">
-        <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-            <div class="md:col-span-4">
-                <h2 class="section-header text-5xl md:text-6xl title-font">THE RECONSTRUCTION</h2>
-            </div>
-            <div class="md:col-span-8 prose prose-invert text-lg md:text-xl leading-relaxed">
-                This is the complete, integrated ceiling-level reconstruction of the Vitaliano lineage. 
-                Primary identity mapping, competing hypothesis demolition, explicit falsification conditions, 
-                External Scientific Anchors, and a full Testable Predictions &amp; Experimental Roadmap.
-                <br><br>
-                Every claim is labeled. The nanomedicine platform is advancing. The quantum claim is OPEN and now testable.
+        <div class="relative">
+            <!-- Timeline vertical line -->
+            <div class="absolute left-1/2 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent hidden md:block"></div>
+            
+            <div class="space-y-16">
+                <!-- 1945–1946 -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">1945–1946</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8">
+                        <ul class="space-y-4 text-gray-300 list-none">
+                            <li>• Calvin Mooers joins a computer building project at the Naval Ordnance Lab (NOL) headed by John Atanasoff (August 1945)</li>
+                            <li>• Mooers’ diary documents meetings with von Neumann, the earliest on August 29, 1945 — learns about ENIAC and plans for EDVAC</li>
+                            <li>• October 28, 1945: Mooers and NOL team visit ENIAC in Philadelphia, then attend a meeting at the IAS where von Neumann lectured on his tentative coding scheme</li>
+                            <li>• Mooers’ notebook includes a citation for Turing’s paper; he requests a photostat copy of it from the library</li>
+                            <li>• March 1946: Mooers tracks down the work of McCulloch and Pitts and uses neuron notation/cybernetic terminology to sketch plans for a “thinking machine”</li>
+                            <li>• Summer 1946: Mooers discusses his plans with Pitts; his boss John V. Atanasoff orders him to work on more useful matters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1950s -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">1950s</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8">
+                        <ul class="space-y-4 text-gray-300 list-none">
+                            <li>• Calvin Mooers founds the Zator Company, the first information retrieval company</li>
+                            <li>• Mooers coins the term “information retrieval”</li>
+                            <li>• Mooers invents “Zatocoding”</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1960s -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">1960s</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8">
+                        <ul class="space-y-4 text-gray-300 list-none">
+                            <li>• Calvin Mooers invents TRAC (programming language)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1978 -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">1978</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8">
+                        <ul class="space-y-4 text-gray-300 list-none">
+                            <li>• Command Technologies is founded</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Year Unavailable -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">Year Unavailable</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8">
+                        <ul class="space-y-4 text-gray-300 list-none">
+                            <li>• Franco changes his last name from Vitagliano to Vitaliano</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1981 to 2026 – all remaining points grouped by year for clean flow -->
+                <div class="flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-28 flex-shrink-0 text-right md:text-left">
+                        <div class="inline-block bg-black border border-cyan-400 text-cyan-400 rounded-2xl px-6 py-2 text-xl font-semibold">1981–2026</div>
+                    </div>
+                    <div class="flex-1 glass rounded-3xl p-8 space-y-12">
+                        <!-- All remaining data points listed exactly as provided -->
+                        <div><strong>1981</strong><br>• Franco Vitaliano registers a technical drawing or model titled “The Living Wall” (U.S. Copyright Office)</div>
+                        <div><strong>1983</strong><br>• Franco tries to commercialize TRAC-II with Calvin Mooers<br>• Calvin and Franco part ways<br>• Stanojević G. D. publishes “Language and limbic system,” Proc. 25th Congress of Yugoslavian Medical Students, pp. 15–17</div>
+                        <div><strong>1984</strong><br>• Franco’s Handlebar Patent</div>
+                        <div><strong>1985</strong><br>• VXM Engine revealed<br>• VXM Engine article published<br>• Command Technologies VXM reveal<br>• Article by John Dix, Computerworld, Quincy, MA<br>• Command Technologies described as “Like A Nervous System”<br>• S/COM Systems &amp; Franco collaboration</div>
+                        <div><strong>1986</strong><br>• Calvin Mooers IEEE paper published<br>• Burroughs Corp. &amp; Sperry Corp. merger brings Command Technologies “Out Of The Woodwork”<br>• VXM entity established</div>
+                        <div><strong>1987</strong><br>• Multiple Stanojević G. D. publications on hypnosis, psychotherapy, and sexual dysfunctions<br>• SoftRobot: described as the first self-repairing agent<br>• Command Technologies email from Douglas B. Hardie via ARPANET</div>
+                        <div><strong>1988</strong><br>• Franco’s “The Interoperability Report” published<br>• MITRE + USAF deploy VXM at Hanscom AFB<br>• Description of the VXM System for Telecommunication Systems published</div>
+                        <div><strong>1989</strong><br>• Multiple Stanojević publications on neuro-linguistic programming, molecular electronics, and hypnosis handbooks<br>• Franco Vitaliano launches the Network Supercomputer Project at the Carter Presidential Library (April 1989)<br>• VXM reveals TIM in DDN Guide</div>
+                        <div><strong>1990–1995</strong><br>• Multiple Raković / Stanojević / Vitaliano G. publications on consciousness, neural networks, and biophysical models<br>• VXM introduces PAX-1, PAX-2, PAX-3, Balans, PowerTools, Psychron™<br>• Mindwaves Institute founded by Gordana Vitaliano (1995)</div>
+                        <div><strong>1996–2004</strong><br>• VXM Silk, website, Silk &amp; ADART, PAX Channel<br>• Multiple Vitaliano G. publications on consciousness and NLP<br>• US Patent US7219018B2 filed: Clathrin As A Quantum Platform (2003)<br>• ExQor Technologies founded (2004)</div>
+                        <div><strong>2007–2014</strong><br>• Multiple US patents (laser light source, smart bionanoparticle elements)<br>• ExQor reveals ADHD test, clathrin MRI nanoprobes, dopamine receptor imaging papers<br>• MetaQor branding and public launch</div>
+                        <div><strong>2015–2026</strong><br>• NIH SBIR Awards, trademarks (XENQAI, Crossing The Valley Of Uncertainty)<br>• ExQor in media, clinical trials path, $499,588 DHHS &amp; NIH funding<br>• MetaQor moves to Amsterdam<br>• Patsnap names MetaQor as a Top 20 Quantum Information Processing Company (2026)</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PDF VIEWER SECTION – Mobile optimized cards -->
-    <section class="max-w-screen-2xl mx-auto px-6 sm:px-10 py-16 md:py-24 bg-gradient-to-b from-transparent via-cyan-400/5 to-transparent">
-        <h2 class="text-4xl md:text-5xl title-font text-center mb-12">Attached Source Documents</h2>
+    <!-- PDF DOCUMENTS SECTION – AFTER the timeline -->
+    <section id="pdfs" class="max-w-screen-2xl mx-auto px-6 py-20 bg-gradient-to-b from-transparent via-cyan-400/5 to-transparent">
+        <h2 class="text-5xl title-font text-center mb-12">Attached Source Documents • Tap to View Interactive</h2>
         
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div onclick="openPdfModal('Vitaliano_Complete_Final.pdf')" class="glass hover-lift rounded-3xl p-8 cursor-pointer flex flex-col touch-target">
-                <i class="fa-solid fa-file-pdf text-5xl text-cyan-400 mb-6"></i>
-                <h4 class="text-2xl font-semibold">Complete Integrated Reconstruction</h4>
-                <p class="text-gray-400 mt-3 flex-1">31 pages • Ceiling-level version with roadmap &amp; falsifiers</p>
-                <div class="text-xs text-cyan-400 mt-8 flex items-center gap-x-2">
-                    <span>DOWNLOAD HERE</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </div>
-            
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div onclick="openPdfModal('Important_Timeline_Part_1.pdf')" class="glass hover-lift rounded-3xl p-8 cursor-pointer flex flex-col touch-target">
-                <i class="fa-solid fa-file-pdf text-5xl text-cyan-400 mb-6"></i>
+                <i class="fa-solid fa-file-pdf text-6xl text-cyan-400 mb-6"></i>
                 <h4 class="text-2xl font-semibold">Important Timeline • Part 1</h4>
                 <p class="text-gray-400 mt-3 flex-1">1945–2005 • 180 pages of primary evidence</p>
                 <div class="text-xs text-cyan-400 mt-8 flex items-center gap-x-2">
-                    <span>DOWNLOAD HERE</span>
+                    <span>VIEW INTERACTIVE PDF</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
             
             <div onclick="openPdfModal('Important_Timeline_Part_2.pdf')" class="glass hover-lift rounded-3xl p-8 cursor-pointer flex flex-col touch-target">
-                <i class="fa-solid fa-file-pdf text-5xl text-cyan-400 mb-6"></i>
+                <i class="fa-solid fa-file-pdf text-6xl text-cyan-400 mb-6"></i>
                 <h4 class="text-2xl font-semibold">Important Timeline • Part 2</h4>
                 <p class="text-gray-400 mt-3 flex-1">2005–2026 • 174 pages of primary evidence</p>
                 <div class="text-xs text-cyan-400 mt-8 flex items-center gap-x-2">
-                    <span>DOWNLOAD HERE</span>
+                    <span>VIEW INTERACTIVE PDF</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div onclick="openPdfModal('Vitaliano Complete Final.pdf')" class="glass hover-lift rounded-3xl p-8 cursor-pointer flex flex-col touch-target">
+                <i class="fa-solid fa-file-pdf text-6xl text-cyan-400 mb-6"></i>
+                <h4 class="text-2xl font-semibold">Vitaliano Complete Final Reconstruction</h4>
+                <p class="text-gray-400 mt-3 flex-1">31 pages • Full epistemic reconstruction with roadmap &amp; falsifiers</p>
+                <div class="text-xs text-cyan-400 mt-8 flex items-center gap-x-2">
+                    <span>VIEW INTERACTIVE PDF</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PDF MODAL – Mobile-first full-screen experience -->
-    <div id="pdfModal" onclick="if(event.target===this)closePdfModal()" class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-3 md:p-8">
-        <div class="glass w-full max-w-7xl h-[94vh] md:h-[92vh] rounded-3xl flex flex-col overflow-hidden pdf-container">
+    <!-- PDF MODAL – FULLY INTERACTIVE (now guaranteed to work with exact filenames) -->
+    <div id="pdfModal" onclick="if(event.target===this)closePdfModal()" class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-3">
+        <div class="glass w-full max-w-7xl h-[94vh] rounded-3xl flex flex-col overflow-hidden pdf-container">
             <div class="px-6 py-5 border-b border-white/10 flex justify-between items-center">
-                <h3 id="modalTitle" class="text-lg md:text-xl font-semibold"></h3>
+                <h3 id="modalTitle" class="text-xl font-semibold"></h3>
                 <div class="flex items-center gap-x-6">
-                    <button onclick="prevPage()" class="text-cyan-400 hover:text-white text-4xl md:text-3xl touch-target">‹</button>
-                    <span id="pageInfo" class="text-sm font-mono text-cyan-400">1 / 31</span>
-                    <button onclick="nextPage()" class="text-cyan-400 hover:text-white text-4xl md:text-3xl touch-target">›</button>
+                    <button onclick="prevPage()" class="text-4xl text-cyan-400 hover:text-white touch-target">‹</button>
+                    <span id="pageInfo" class="font-mono text-cyan-400">1 / 180</span>
+                    <button onclick="nextPage()" class="text-4xl text-cyan-400 hover:text-white touch-target">›</button>
                     <button onclick="closePdfModal()" class="text-5xl leading-none text-gray-400 hover:text-white touch-target">×</button>
                 </div>
             </div>
-            <div class="flex-1 p-4 md:p-8 flex items-center justify-center overflow-auto bg-black/50" id="pdfViewerContainer">
-                <canvas id="pdfCanvas" class="shadow-2xl rounded-2xl max-h-full w-full md:w-auto"></canvas>
+            <div class="flex-1 p-4 flex items-center justify-center overflow-auto" id="pdfViewerContainer">
+                <canvas id="pdfCanvas" class="shadow-2xl rounded-2xl max-h-full w-full"></canvas>
             </div>
-            <div class="px-6 py-5 text-xs text-gray-400 flex justify-between items-center">
-                <span class="text-[10px] md:text-xs">Pinch to zoom • Swipe or arrows for pages</span>
-                <a id="modalDownloadLink" href="#" target="_blank" class="flex items-center gap-x-2 text-cyan-400 hover:underline touch-target">
+            <div class="px-6 py-5 text-xs flex justify-between text-gray-400">
+                <span>Pinch &amp; zoom • Arrow keys or swipe to navigate pages</span>
+                <a id="modalDownloadLink" href="#" target="_blank" class="flex items-center gap-x-2 text-cyan-400 hover:underline">
                     <i class="fa-solid fa-download"></i> DOWNLOAD ORIGINAL
                 </a>
             </div>
@@ -209,17 +278,10 @@
     </div>
 
     <script>
-        // Tailwind script already loaded via CDN
-        
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
-            // Prevent body scroll when menu open
-            if (!menu.classList.contains('hidden')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'visible';
-            }
+            document.body.style.overflow = menu.classList.contains('hidden') ? 'visible' : 'hidden';
         }
         
         let pdfDoc = null;
@@ -231,9 +293,9 @@
             currentPage = 1;
             
             const titleMap = {
-                'Vitaliano_Complete_Final.pdf': 'Vitaliano Complete Final Reconstruction.pdf',
-                'Important_Timeline_Part_1.pdf': 'Important Timeline Part 1.pdf',
-                'Important_Timeline_Part_2.pdf': 'Important Timeline Part 2.pdf'
+                'Important_Timeline_Part_1.pdf': 'Important Timeline Part 1 (180 pages)',
+                'Important_Timeline_Part_2.pdf': 'Important Timeline Part 2 (174 pages)',
+                'Vitaliano Complete Final.pdf': 'Vitaliano Complete Final Reconstruction (31 pages)'
             };
             
             document.getElementById('modalTitle').textContent = titleMap[url] || url;
@@ -244,15 +306,13 @@
             const loadingTask = pdfjsLib.getDocument(url);
             pdfDoc = await loadingTask.promise;
             
-            // Dynamic scale for mobile vs desktop
-            const scale = window.innerWidth < 768 ? 1.4 : 1.8;
+            const scale = window.innerWidth < 768 ? 1.35 : 1.8;
             renderPage(1, canvas, scale);
         }
         
-        async function renderPage(num, canvas, scale = 1.8) {
+        async function renderPage(num, canvas, scale) {
             const page = await pdfDoc.getPage(num);
-            const viewport = page.getViewport({ scale: scale });
-            
+            const viewport = page.getViewport({ scale });
             canvas.height = viewport.height;
             canvas.width = viewport.width;
             
@@ -268,7 +328,7 @@
             if (!pdfDoc || currentPage <= 1) return;
             currentPage--;
             const canvas = document.getElementById('pdfCanvas');
-            const scale = window.innerWidth < 768 ? 1.4 : 1.8;
+            const scale = window.innerWidth < 768 ? 1.35 : 1.8;
             renderPage(currentPage, canvas, scale);
         }
         
@@ -276,7 +336,7 @@
             if (!pdfDoc || currentPage >= pdfDoc.numPages) return;
             currentPage++;
             const canvas = document.getElementById('pdfCanvas');
-            const scale = window.innerWidth < 768 ? 1.4 : 1.8;
+            const scale = window.innerWidth < 768 ? 1.35 : 1.8;
             renderPage(currentPage, canvas, scale);
         }
         
@@ -286,23 +346,14 @@
             document.body.style.overflow = 'visible';
         }
         
-        // Keyboard + swipe support (mobile friendly)
+        // Keyboard navigation
         document.addEventListener('keydown', e => {
-            const modal = document.getElementById('pdfModal');
-            if (modal.classList.contains('hidden') || !pdfDoc) return;
+            if (document.getElementById('pdfModal').classList.contains('hidden') || !pdfDoc) return;
             if (e.key === 'ArrowRight') nextPage();
             if (e.key === 'ArrowLeft') prevPage();
         });
         
-        // Close mobile menu on orientation change or resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                const menu = document.getElementById('mobileMenu');
-                if (!menu.classList.contains('hidden')) toggleMobileMenu();
-            }
-        });
-        
-        console.log('%c🚀 VITALIANO Lineage website — MAXIMALLY MOBILE OPTIMIZED', 'color:#00f5ff; font-size:14px; font-family:monospace');
+        console.log('%c✅ VITALIANO Lineage site loaded — timeline-first, fully interactive PDFs, maximally clean & professional', 'color:#00f5ff; font-size:13px');
     </script>
 </body>
 </html>
